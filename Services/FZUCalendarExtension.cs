@@ -12,7 +12,7 @@ namespace calendar.Services
             // 注册监控服务
             services.AddHealthChecks().AddCalendarCheck("CalendarCheck");
             // 注册校历HttpClient
-            services.AddHttpClient("FZUCalendar", c =>
+            services.AddHttpClient(FZUCalendarAPI.ClientName, c =>
             {
                 c.BaseAddress = new Uri("http://59.77.226.32/");
                 c.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 Edg/87.0.664.75");

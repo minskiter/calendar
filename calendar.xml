@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>calendar</name>
+    </assembly>
+    <members>
+        <member name="T:calendar.Controllers.CalendarController">
+            <summary>
+            校历接口
+            </summary>
+        </member>
+        <member name="M:calendar.Controllers.CalendarController.GetTermWeek(System.DateTime)">
+            <summary>
+             查询指定日期对应的学期周数，默认为当前日期
+            </summary>
+            <param name="date">时间</param>
+            <returns>学期周数</returns>
+        </member>
+        <member name="M:calendar.Controllers.CalendarController.GetTermWeekStart(calendar.Models.TermWeek)">
+            <summary>
+            获取周起始
+            </summary>
+            <param name="term">学期周</param>
+            <returns>周起始的时间</returns>
+        </member>
+        <member name="M:calendar.Controllers.CalendarController.GetTermWeekEnd(calendar.Models.TermWeek)">
+            <summary>
+            获取周结束时间
+            </summary>
+            <param name="term">学期周</param>
+            <returns>周结束的时间</returns>
+        </member>
+        <member name="M:calendar.Controllers.CalendarController.GetTermWeekCount(calendar.Models.Term)">
+            <summary>
+            获取周数
+            </summary>
+            <param name="term">学期</param>
+            <returns>学期对应的周数</returns>
+        </member>
+        <member name="M:calendar.Controllers.CalendarController.GetTermEvents(calendar.Models.Term)">
+            <summary>
+            获取学期事件
+            </summary>
+            <param name="term">学期</param>
+            <returns>学期事件</returns>
+        </member>
+        <member name="T:calendar.HealthCheck.CalendarHealthCheck">
+            <summary>
+            校历服务可用性监控
+            </summary>
+        </member>
+        <member name="M:calendar.HealthCheck.CalendarHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:calendar.Models.Term">
+            <summary>
+            学期信息
+            </summary>
+        </member>
+        <member name="P:calendar.Models.Term.Year">
+            <summary>
+            年份
+            </summary>
+        </member>
+        <member name="P:calendar.Models.Term.Semester">
+            <summary>
+            第几学期
+            </summary>
+        </member>
+        <member name="T:calendar.Models.TermEvent">
+            <summary>
+            学期事件
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermEvent.Start">
+            <summary>
+            事件开始的时间
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermEvent.End">
+            <summary>
+            事件结束的时间
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermEvent.Name">
+            <summary>
+            事件的名称
+            </summary>
+        </member>
+        <member name="T:calendar.Models.TermInfo">
+            <summary>
+            学期信息
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermInfo.Start">
+            <summary>
+            开始的时间
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermInfo.End">
+            <summary>
+            结束的时间
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermInfo.Events">
+            <summary>
+            事件
+            </summary>
+        </member>
+        <member name="T:calendar.Models.TermWeek">
+            <summary>
+            学期周
+            </summary>
+        </member>
+        <member name="P:calendar.Models.TermWeek.Week">
+            <summary>
+            第几周
+            </summary>
+        </member>
+        <member name="T:calendar.Services.FZUCalendarAPI">
+            <summary>
+            校历接口
+            </summary>
+        </member>
+        <member name="F:calendar.Services.FZUCalendarAPI._client">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarAPI.GetTermInfos">
+            <inheritdoc/>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarAPI.GetTermEventsAsync(System.String)">
+            <summary>
+            获取某个学期的具体事件
+            </summary>
+            <param name="xq">具体的学期格式为 学期开始时间结束时间</param>
+            <exception cref="T:System.ArgumentException">xq格式错误时抛出</exception>
+            <returns></returns>
+        </member>
+        <member name="T:calendar.Services.FZUCalendarService">
+            <inheritdoc/>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.SyncCalendar">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">初始化校历参数错误时抛出</exception>      
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.GetTermWeek(System.DateTime)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentOutOfRangeException">转换后范围错误时抛出</exception>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.GetTermWeekStart(calendar.Models.TermWeek)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentOutOfRangeException">当学期范围错误时抛出</exception>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.GetTermWeekEnd(calendar.Models.TermWeek)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentOutOfRangeException">当学期范围错误时抛出</exception>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.GetTermWeekCount(calendar.Models.Term)">
+            <inheritdoc/>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">学期范围错误时抛出</exception>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.GetTermEvents(calendar.Models.Term)">
+            <inheritdoc />
+            <exception cref="T:System.ArgumentOutOfRangeException">范围错误时抛出</exception>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.IsTerm(calendar.Models.Term)">
+            <summary>
+            判断学期是否正确或者在范围内
+            </summary>
+            <param name="term">学期</param>
+            <returns>格式范围是否正确</returns>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+        </member>
+        <member name="M:calendar.Services.FZUCalendarService.IsTermWeek(calendar.Models.TermWeek)">
+            <summary>
+            判断学期周数是否在范围内
+            </summary>
+            <param name="term">学期周数</param>
+            <returns>格式范围是否正确</returns>
+            <exception cref="T:System.NullReferenceException">校历未初始化时抛出</exception>
+        </member>
+        <member name="T:calendar.Services.IFZUCalendarAPI">
+            <summary>
+             福州大学校历接口
+            </summary>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarAPI.GetTermInfos">
+            <summary>
+            获取校历完整信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:calendar.Services.IFZUCalendarService">
+            <summary>
+            FZU日历分析服务
+            </summary>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.GetCalendar">
+            <summary>
+            获取校历信息
+            </summary>
+            <returns>校历信息列表</returns>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.SyncCalendar">
+            <summary>
+            同步校历
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.GetTermWeek(System.DateTime)">
+            <summary>
+            获取指定时间的学期，默认为当前时间
+            </summary>
+            <param name="date">指定日期</param>
+            <returns>对应的学期</returns>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.GetTermWeekStart(calendar.Models.TermWeek)">
+            <summary>
+            获取指定周开始的时间
+            </summary>
+            <param name="termWeek">指定学期和周</param>
+            <returns>该周周一00:00:00</returns>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.GetTermWeekEnd(calendar.Models.TermWeek)">
+            <summary>
+            获取指定周结束的时间
+            </summary>
+            <param name="termWeek">指定学期和周</param>
+            <returns>该周周日23:59:59</returns>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.GetTermWeekCount(calendar.Models.Term)">
+            <summary>
+            获取指定学期的周数
+            </summary>
+            <param name="term">学期</param>
+            <returns>周的总数</returns>
+        </member>
+        <member name="M:calendar.Services.IFZUCalendarService.GetTermEvents(calendar.Models.Term)">
+            <summary>
+            获取当前学期的事件
+            </summary>
+            <param name="term"></param>
+            <returns>返回事件的列表</returns>
+        </member>
+    </members>
+</doc>
